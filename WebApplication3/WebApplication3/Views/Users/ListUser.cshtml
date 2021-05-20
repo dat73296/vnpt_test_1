@@ -1,0 +1,38 @@
+﻿@model IEnumerable<WebApplication3.Models.User>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="padding-left:500px"> Danh sách tài khoản</h1>
+<table class="table" style="padding-left:500px">
+    <thead>
+        <tr>
+            <th style="padding-left:50px">
+                UserName
+            </th>
+            <th style="padding-left:50px">
+                Password
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td style="padding-left:50px">
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td style="padding-left:50px">
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.UserName">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.UserName">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.UserName">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<a style="padding-left:200px;margin-top:100px"> Quay lại</a>

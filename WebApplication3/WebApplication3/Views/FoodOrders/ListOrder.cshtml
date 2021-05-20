@@ -1,0 +1,73 @@
+﻿@model IEnumerable<WebApplication3.Models.FoodOrder>
+
+@{
+    ViewData["Title"] = "ListOrder";
+}
+
+<h1 style="padding-left:300px;text-decoration:solid;text-decoration-color:brown">Danh sách đã đặt món</h1>
+
+
+<table class="table" style="padding-left:250px">
+    <thead>
+        <tr>
+            <th style="padding-left:50px">
+                Nguời đặt
+            </th>
+            <th style="padding-left:50px">
+                Tên món
+            </th>
+            <th style="padding-left:50px">
+                Số lượng
+            </th>
+            <th style="padding-left:50px">
+                Ngày đặt
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th>
+                Hoạt động
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td style="padding-left:50px">
+                @Html.DisplayFor(modelItem => item.User.UserName)
+            </td>
+            <td style="padding-left:50px">
+                @Html.DisplayFor(modelItem => item.Food.Name)
+            </td>
+
+            <td style="padding-left:50px">
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td style="padding-left:50px">
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td style="padding-left:50px">
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+          
+            <td>
+
+                <a style="text-decoration:none" asp-action="Up" asp-route-id="@item.Id">+</a>
+                <a style="text-decoration:none" asp-action="Down" asp-route-id="@item.Id">-</a>
+            </td>
+            
+        </tr>
+        }
+    </tbody>
+</table>
+<p>
+    <a style="padding-left:300px" asp-action="Create">Create New</a>
+    <a style="padding-left:50px" asp-controller="FoodOrders" asp-action="Index"></a>
+    
+</p>
+<form asp-action="Search" method="post" style="padding-left:250px;padding-top:100px">
+    <label>Chọn ngày</label>
+    <input type="datetime-local" name="daytime">
+    <input type="submit">
+</form>

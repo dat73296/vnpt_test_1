@@ -1,0 +1,171 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.navbar
+{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+nav
+{
+flex: 1;
+text-align: right;
+}
+nav ul{
+    display: inline-block;
+    list-style-type: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 10px;
+}
+nav ul li{
+    display:inline-block ;
+    margin-right: 20px;
+
+}
+a{
+    text-decoration: none;
+    color: #555;
+
+}
+p{
+    color: #555;
+}
+.input{
+    height: 100%;
+    width: 100%;
+}
+.row{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.container
+{
+    max-width: 1300px;
+    height: 100px;
+    margin: auto;
+    padding-right: 25px;
+}
+input
+{
+    display:inline-flex;
+    border-radius: 10px;
+    font-size: 20px;
+}
+.i1
+{
+    width: 300px;
+}
+.col-2{
+    flex-basis: 50%;
+    min-width: 300px;
+}
+.col-2 img{
+    width: 500px;
+    height:400px ;
+
+}
+.btn
+{
+    display: inline-block;
+    background-color: yellowgreen;
+    color: tomato;
+    padding: 8px 30px;
+    margin: 30px 0px;
+    border-radius: 30px;
+    transition: background 0.5s;
+
+}
+.btn:hover
+{
+    background: rosybrown;
+}
+
+#products{
+    padding-top: 30px;
+    max-width: 1600px;
+    height: 800px;
+    margin: auto;
+    padding-left: 5px;
+    padding-right: 5px;
+    display: block;
+    overflow: hidden;
+}
+.col-4
+{
+    padding: 10px;
+    transition: transform 0.5s;
+}
+.col-4:hover{
+    transform: translateY(-5px);
+}
+ .btn1{
+    display:inline-flex;
+    background-color: yellowgreen;
+    color: tomato;
+   
+    padding: 5px 30px;
+    margin: 10px 0px;
+    border-radius: 30px;
+    transition: background 0.5s;
+}
+
+.btn1:hover
+{
+    background-color: lightgreen;
+}
+.Name
+{
+    align-items: center;
+    margin-bottom: 5px;
+}
+.Name p{
+    text-align: center;
+    
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    color: maroon;
+}
+.Name::after{
+    content: '';
+    background: #ff523b;
+    width: 80px;
+    height: 5px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.row .gio 
+{
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    background-color: yellow;
+}
+.row .gio i{
+    
+    padding-top: 8px;
+    padding-left: 8px;
+}
+.row .gio:hover{
+    background-color: yellow;
+}
+.row .khoi_mua
+{
+    display: inline-block;
+}
+.bottom
+{
+    padding-top: 10px;
+    height: 300px;
+    width: 100%;
+    background-color: #ff523b;    
+}

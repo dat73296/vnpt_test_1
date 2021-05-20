@@ -1,0 +1,77 @@
+﻿@model IEnumerable<WebApplication3.Models.Food>
+
+@{var foodCategories = ViewBag.FoodCategory as List<FoodCategory>;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/Style/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <div class="header" style="background-color:greenyellow">
+        <div class="container" style="height: 100px">
+            <div class="navbar">
+                <nav>
+                    <ul>
+
+                        <li>
+                            <a asp-controller="Home" asp-action="Index">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="FoodOrders" asp-action="ListOrder">
+                                Danh sách đơn hàng
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Logout">LogOut</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+
+    </div>
+
+    <section id="products">
+        <div class="Name">
+        </div>
+
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-4">
+                    <img src=@Url.Content("~/Image/" + item.Image) width="250" height="250" />
+                    <h4>@item.Name</h4>
+                    <p>@item.Price VNĐ</p>
+                    <div class="rating">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                    </div>
+                        <a asp-action="Create" asp-controller="FoodOrders" asp-route-id="@item.ID">ADD &#8594;</a>
+                    </div>
+
+                
+            }
+        </div>
+    </section>
+
+
+
+
+
+</body>
+</html>
