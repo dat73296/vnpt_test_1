@@ -55,20 +55,40 @@ namespace WebApplication3.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FoodOrders",
+                name: "Orders",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FoodId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(10)", nullable: true),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FoodOrders", x => x.Id);
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "UserName",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FoodOrders",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Quantity = table.Column<float>(type: "real", nullable: false),
+                    FoodId = table.Column<int>(type: "int", nullable: false),
+                    TotalMoney = table.Column<int>(type: "int", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FoodOrders", x => x.ID);
                     table.ForeignKey(
                         name: "FK_FoodOrders_Foods_FoodId",
                         column: x => x.FoodId,
@@ -76,11 +96,11 @@ namespace WebApplication3.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_FoodOrders_User_UserId",
-                        column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "UserName",
-                        onDelete: ReferentialAction.Restrict);
+                        name: "FK_FoodOrders_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -89,14 +109,19 @@ namespace WebApplication3.Migrations
                 column: "FoodId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FoodOrders_UserId",
+                name: "IX_FoodOrders_OrderId",
                 table: "FoodOrders",
-                column: "UserId");
+                column: "OrderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Foods_FoodCategoryId",
                 table: "Foods",
                 column: "FoodCategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_UserId",
+                table: "Orders",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -108,10 +133,13 @@ namespace WebApplication3.Migrations
                 name: "Foods");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "FoodCategories");
+
+            migrationBuilder.DropTable(
+                name: "User");
         }
     }
 }

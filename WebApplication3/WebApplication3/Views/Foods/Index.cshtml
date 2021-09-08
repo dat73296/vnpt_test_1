@@ -2,6 +2,23 @@
 
 @{var foodCategories = ViewBag.FoodCategory as List<FoodCategory>;
 }
+@section scripts{
+    <script>
+        $(function () {
+            $('#AlertBox').removeClass('hide');
+            $('#AlertBox').delay(2000).slideUp(500);
+        });
+
+    </script>
+}
+<div style="width:50px;width:100%;background-color:white">
+    @if (ViewBag.Note != null)
+    {
+        <div id="AlertBox" class="alert alert-primary @ViewBag.Note hide" role="alert">
+            @ViewBag.Note
+        </div>
+    }
+</div>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,12 +40,12 @@
                     <ul>
 
                         <li>
-                            <a asp-controller="Home" asp-action="Index">
+                            <a asp-controller="Home" asp-action="IndexLog">
                                 Home
                             </a>
                         </li>
                         <li>
-                            <a asp-controller="FoodOrders" asp-action="ListOrder">
+                            <a asp-controller="FoodOrders" asp-action="Index">
                                 Danh sách đơn hàng
                             </a>
                         </li>
@@ -61,10 +78,10 @@
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star-o" aria-hidden="true"></i>
                     </div>
-                        <a asp-action="Create" asp-controller="FoodOrders" asp-route-id="@item.ID">ADD &#8594;</a>
-                    </div>
+                    <a asp-action="Create" asp-controller="FoodOrders" asp-route-id="@item.ID">ADD &#8594;</a>
+                </div>
 
-                
+
             }
         </div>
     </section>

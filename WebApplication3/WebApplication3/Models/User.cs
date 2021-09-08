@@ -7,10 +7,10 @@ namespace WebApplication3.Models
     [Table("User")]
     public class User
     {
-       
+
 
         [Key]
-        [Display(Name ="User")]
+        [Display(Name = "User")]
         [Required]
         [MaxLength(10)]
         public string UserName { get; set; }
@@ -19,8 +19,6 @@ namespace WebApplication3.Models
         [Required]
         [MaxLength(10)]
         public string Password { get; set; }
-
-
-        public List<FoodOrder> FoodOrders { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }

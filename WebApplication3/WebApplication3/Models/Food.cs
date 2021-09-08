@@ -10,9 +10,9 @@ namespace WebApplication3.Models
     [Table("Foods")]
     public class Food
     {
-       
+
         [Key]
-        [Display(Name ="ID")]
+        [Display(Name = "ID")]
         public int ID { get; set; }
 
         [Display(Name = "Name")]
@@ -29,9 +29,7 @@ namespace WebApplication3.Models
         public int FoodCategoryId { get; set; }
         public FoodCategory FoodCategory { get; set; }
 
-
         public List<FoodOrder> FoodOrders { get; set; }
-
 
     }
 

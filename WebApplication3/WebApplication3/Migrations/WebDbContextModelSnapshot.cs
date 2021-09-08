@@ -65,7 +65,7 @@ namespace WebApplication3.Migrations
 
             modelBuilder.Entity("WebApplication3.Models.FoodOrder", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -73,11 +73,33 @@ namespace WebApplication3.Migrations
                     b.Property<int>("FoodId")
                         .HasColumnType("int");
 
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<float>("Quantity")
+                        .HasColumnType("real");
+
+                    b.Property<int>("TotalMoney")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("FoodId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("FoodOrders");
+                });
+
+            modelBuilder.Entity("WebApplication3.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
 
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
@@ -87,11 +109,9 @@ namespace WebApplication3.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FoodId");
-
                     b.HasIndex("UserId");
 
-                    b.ToTable("FoodOrders");
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("WebApplication3.Models.User", b =>
@@ -129,11 +149,22 @@ namespace WebApplication3.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApplication3.Models.User", "User")
+                    b.HasOne("WebApplication3.Models.Order", "Order")
                         .WithMany("FoodOrders")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Food");
+
+                    b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("WebApplication3.Models.Order", b =>
+                {
+                    b.HasOne("WebApplication3.Models.User", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
@@ -148,9 +179,14 @@ namespace WebApplication3.Migrations
                     b.Navigation("Foods");
                 });
 
-            modelBuilder.Entity("WebApplication3.Models.User", b =>
+            modelBuilder.Entity("WebApplication3.Models.Order", b =>
                 {
                     b.Navigation("FoodOrders");
+                });
+
+            modelBuilder.Entity("WebApplication3.Models.User", b =>
+                {
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

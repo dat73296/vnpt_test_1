@@ -9,19 +9,16 @@ namespace WebApplication3.Models
     public class FoodOrder
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        [Required]
+        public int ID { get; set; }
+
+        public float Quantity { get; set; }
         public int FoodId { get; set; }
         public Food Food { get; set; }
+        public int TotalMoney { get; set; }
+        public int OrderId { get; set; }
+        public Order Order { get; set; }
 
-        public string UserId { get; set; }
-        public User User { get; set; }
-
-        public int Quantity { get; set; }
-
-        public DateTime OrderDate { get; set; }
-        public string Status { get; set; }
-       
 
     }
 }

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<WebApplication3.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="padding-left:500px">Danh sách Order</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a asp-action="Index1" asp-controller="FoodOrders" asp-route-id="@item.Id">Xem chi tiết</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

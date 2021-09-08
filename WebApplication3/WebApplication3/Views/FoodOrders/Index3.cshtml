@@ -1,0 +1,68 @@
+﻿@model IEnumerable<WebApplication3.Models.FoodOrder>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="padding-left:300px">Danh sách các mặt hàng đã đặt</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID Order
+            </th>
+            <th>
+                Người đặt
+            </th>
+            <th>
+                Tên món
+            </th>
+            <th>
+                Số lượng
+            </th>
+            <th>
+                Hình ảnh
+            </th>
+            <th>
+                Đơn giá
+            </th>
+            <th>
+                Ngày đặt
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Food.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                <img src=@Url.Content("~/Image/" + item.Food.Image) width="50" height="50" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Food.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order.OrderDate)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<form  asp-action="Search1" method="post" style="padding-left:250px;padding-top:100px">
+    <label>Chọn ngày</label>
+    <input type="datetime-local" name="day">
+    <input type="submit">
+</form>
+<a asp-controller="Foods" asp-action="Index">Quay lại</a>
